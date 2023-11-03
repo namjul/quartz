@@ -10,11 +10,11 @@ export const DotFolder: QuartzTransformerPlugin = () => ({
         return (_, file) => {
           const slug = file.data.slug?.replaceAll(".", "/") as FullSlug
           const { dir, name, ext } = path.parse(file.data.filePath ?? "")
-          const filePath = `${dir}/${name.replaceAll(".", "/")}${ext}`
+          const vfilePath = `${dir}/${name.replaceAll(".", "/")}${ext}`
           const [fileStem] = file.stem?.split(".").reverse() ?? []
 
           file.data.slug = slug
-          file.data.vfilePath = filePath
+          file.data.vfilePath = vfilePath
           file.stem = fileStem
         }
       },

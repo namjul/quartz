@@ -1,5 +1,6 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { FileNode } from "./quartz/components/ExplorerNode";
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -11,6 +12,14 @@ export const sharedPageComponents: SharedLayout = {
       "Discord Community": "https://discord.gg/cRFFHYye7t",
     },
   }),
+}
+
+function fileStartsWith(value: string, node: FileNode) {
+  if (node.file?.vfilePath?.startsWith(value)) {
+    return true
+  }
+  const result = node.children.some(child => fileStartsWith(value, child))
+  return result
 }
 
 // components for pages that display a single page (e.g. a single note)
@@ -26,7 +35,10 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.Explorer()),
+    Component.DesktopOnly(Component.Explorer({ filterFn: (node) => {
+      return fileStartsWith("content/blog/", node)
+    }})),
+    Component.DesktopOnly(Component.RecentNotes()),
   ],
   right: [
     Component.Graph(),
