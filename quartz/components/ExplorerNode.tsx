@@ -69,7 +69,7 @@ export class FileNode {
 
   // Add new file to tree
   add(file: QuartzPluginData, splice: number = 0) {
-    this.insert({ file, path: file.filePath!.split("/").splice(splice) })
+    this.insert({ file, path: (file.vfilePath ?? file.filePath)!.split("/").splice(splice) })
   }
 
   // Print tree structure (for debugging)

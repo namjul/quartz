@@ -45,7 +45,7 @@ function formatCrumb(displayName: string, baseSlug: FullSlug, currentSlug: Simpl
 function findCurrentFile(allFiles: QuartzPluginData[], folderName: string) {
   return allFiles.find((file) => {
     if (file.slug?.endsWith("index")) {
-      const folderParts = file.filePath?.split("/")
+      const folderParts = (file.vfilePath ?? file.filePath)?.split("/")
       if (folderParts) {
         const name = folderParts[folderParts?.length - 2]
         if (name === folderName) {

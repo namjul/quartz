@@ -44,6 +44,7 @@ const config: QuartzConfig = {
   },
   plugins: {
     transformers: [
+      Plugin.DotFolder(),
       Plugin.FrontMatter(),
       Plugin.TableOfContents(),
       Plugin.CreatedModifiedDate({
