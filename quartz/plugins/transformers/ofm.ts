@@ -15,6 +15,7 @@ import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { PhrasingContent } from "mdast-util-find-and-replace/lib"
 import { capitalize } from "../../util/lang"
+import { convertFilePathToDotnotation } from "./dotfolder";
 
 export interface Options {
   comments: boolean
@@ -195,7 +196,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options> 
           return (tree: Root, _file) => {
             findAndReplace(tree, wikilinkRegex, (value: string, ...capture: string[]) => {
               let [rawFp, rawHeader, rawAlias] = capture
-              const fp = rawFp?.trim() ?? ""
+              const fp = convertFilePathToDotnotation(rawFp)?.trim() ?? ""
               const anchor = rawHeader?.trim() ?? ""
               const alias = rawAlias?.slice(1).trim()
 
