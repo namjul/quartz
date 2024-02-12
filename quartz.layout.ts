@@ -38,7 +38,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(Component.Explorer({ filterFn: (node) => {
       return fileStartsWith("content/blog/", node)
     }})),
-    Component.DesktopOnly(Component.RecentNotes()),
+    Component.DesktopOnly(Component.RecentNotes({ limit: 10 })),
   ],
   right: [
     Component.Graph(),
