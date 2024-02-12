@@ -10,7 +10,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     baseUrl: "samho.xyz",
-    ignorePatterns: ["yearly\.*", "monthly\.*", "daily\.*", "journal\.*", "draft\.*", "area\.*", "archive\.", "person\."],
+    ignorePatterns: ["yearly\.*", "monthly\.*", "daily\.*", "journal\.*", "draft\.*", "area\.*", "archive\.", "person\.", "proj\."],
     defaultDateType: "created",
     theme: {
       typography: {
